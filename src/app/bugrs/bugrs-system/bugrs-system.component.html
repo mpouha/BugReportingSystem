@@ -1,0 +1,20 @@
+<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Priority</th>
+      <th scope="col">Reporter</th>
+      <th scope="col">Date Created</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let bug of bugDataList">
+      <th scope="row">{{bug.title}}</th>
+      <td>{{bug.priority}}</td>
+      <td>{{bug.reporter}}</td>
+      <td>{{bug.creationDate}}</td>
+      <td>{{bug.status}}</td>
+    </tr>
+  </tbody>
+</table>
