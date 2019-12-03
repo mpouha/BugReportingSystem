@@ -1,20 +1,26 @@
-<table class="table table-hover table-dark">
-  <thead>
-    <tr>
-      <th scope="col">Title</th>
-      <th scope="col">Priority</th>
-      <th scope="col">Reporter</th>
-      <th scope="col">Date Created</th>
-      <th scope="col">Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor = "let bug of bugDataList">
-      <th scope="row">{{bug.title}}</th>
-      <td>{{bug.priority}}</td>
-      <td>{{bug.reporter}}</td>
-      <td>{{bug.creationDate}}</td>
-      <td>{{bug.status}}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="row">
+  <div class="col col-lg-12">
+    <div class="table-responsive">
+      <table class="table table-hover table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" (click) = "sortList('title')">Title</th>
+            <th scope="col" (click) = "sortList('priority')">Priority</th>
+            <th scope="col" (click) = "sortList('reporter')">Reporter</th>
+            <th scope="col" (click) = "sortList('createdAt')">Date Created</th>
+            <th scope="col" (click) = "sortList('status')">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let bug of bugDataList">
+            <th scope="row">{{bug.title}}</th>
+            <td>{{bug.priority}}</td>
+            <td>{{bug.reporter}}</td>
+            <td>{{bug.createdAt}}</td>
+            <td>{{bug.status}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

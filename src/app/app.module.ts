@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BugrsModule } from './bugrs/bugrs.module';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -14,7 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     BugrsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

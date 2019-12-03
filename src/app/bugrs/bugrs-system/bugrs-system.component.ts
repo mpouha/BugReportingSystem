@@ -18,7 +18,13 @@ export class BugrsSystemComponent implements OnInit {
   }
 
   fillBugList() {
-    this.bugServiceRetrieval.getBugsList().subscribe((response) => {
+    this.bugServiceRetrieval.getBugsList('title').subscribe((response) => {
+      this.bugDataList = response;
+    });
+  }
+
+  sortList(sortPref: string) {
+    this.bugServiceRetrieval.getBugsList(sortPref).subscribe((response) => {
       this.bugDataList = response;
     });
   }
