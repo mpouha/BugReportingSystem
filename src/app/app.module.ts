@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BugrsModule } from './bugrs/bugrs.module';
 import { HttpClientModule } from '@angular/common/http';
-import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -13,8 +12,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   imports: [
     BrowserModule,
     BugrsModule,
-    HttpClientModule,
-    NgxPaginationModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
