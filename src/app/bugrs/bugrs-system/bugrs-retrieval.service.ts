@@ -11,10 +11,18 @@ export class BugrsRetrievalService {
 
   constructor(private http: HttpClient) { }
 
-  getBugsList(sortBy: string): Observable<any> {
-    const httpParams = new HttpParams() .set('sort',`${sortBy},asc`)
-                                        .set('size','all');
+  getBugsList(): Observable<any> {
+    const httpParams = new HttpParams() .set('sort', `title,asc`)
+                                        .set('size', 'all');
 
     return this.http.get(this.endpointURL,{params: httpParams});
   }
+
+  getBugsSortedList(sortBy: string, orderBy: string): Observable<any> {
+    const httpParams = new HttpParams() .set('sort', `${sortBy},${orderBy}`)
+                                        .set('size', 'all');
+
+    return this.http.get(this.endpointURL,{params: httpParams});
+  }
+
 }
