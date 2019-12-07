@@ -4,11 +4,11 @@
       <table class="table table-hover table-striped">
         <thead class="thead-dark">
           <tr>
-            <th scope="col" (click) = "sortList('title')">Title</th>
-            <th scope="col" (click) = "sortList('priority')">Priority</th>
-            <th scope="col" (click) = "sortList('reporter')">Reporter</th>
-            <th scope="col" (click) = "sortList('createdAt')">Date Created</th>
-            <th scope="col" (click) = "sortList('status')">Status</th>
+            <th scope="col" (click) = "sortListByTitle()">Title</th>
+            <th scope="col" (click) = "sortListByPriority()">Priority</th>
+            <th scope="col" (click) = "sortListByReporter()">Reporter</th>
+            <th scope="col" (click) = "sortListByDate()">Date Created</th>
+            <th scope="col" (click) = "sortListByStatus()">Status</th>
           </tr>
         </thead>
         <tbody>
