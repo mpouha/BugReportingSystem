@@ -10,7 +10,7 @@
             <th scope="col" (click) = "sortListByDate()">Date Created</th>
             <th scope="col" (click) = "sortListByStatus()">Status</th>
             <th style="text-align: center">
-              <button [routerLink]="['submitbug']"
+              <button (click) = "routerNavigation('submitbug')"
                type="button" class="btn btn-default btn-lg">
                   <img src='assets/images/img_28512.png' width="20" height="20">
 
