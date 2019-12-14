@@ -12,6 +12,8 @@ const routes: Routes = [
   //  {path :''}
 
 ];
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ const routes: Routes = [
     BugrsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
