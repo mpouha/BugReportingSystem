@@ -1,10 +1,14 @@
-<form [formGroup]="submitForm">
+<form [formGroup]="submitForm" (submit)="addEditBug()" >
   <div class="col col-lg-12">
 
     <div class="row">
       <div class="col col-lg-6">
         <label>Title</label>
-        <input formControlName="title" type="text" class="form-control" placeholder="Set a Title">
+        <input
+               type="text"
+               class="form-control"
+               formControlName="title"
+               placeholder="Set a Title">
       </div>
       <div class="col col-lg-6">
         <label>Description</label>
@@ -16,8 +20,8 @@
       <div class="col col-lg-6">
         <div class="form-group">
           <label>Priority</label>
-          <select class="form-control">
-            <option *ngFor="let x of priorityList" value="{{x}}">{{x}}</option>
+          <select class="form-control" formControlName="priority">
+            <option *ngFor="let x of priorityList;let i = index" value="{{i+1}}">{{x}}</option>
           </select>
         </div>
       </div>
@@ -25,8 +29,8 @@
       <div class="col col-lg-6">
         <div class="form-group">
           <label>Reporter</label>
-          <select class="form-control">
-            <option *ngFor="let x of reporterList" value="{{x}}">{{x}}</option>
+          <select class="form-control" formControlName="reporter">
+            <option *ngFor="let x of reporterList;" value="{{x}}">{{x}}</option>
           </select>
         </div>
       </div>
@@ -36,7 +40,7 @@
       <div class="col col-lg-12">
         <div class="form-group">
           <label>Status</label>
-          <select class="form-control">
+          <select class="form-control" formControlName="status">
             <option *ngFor="let x of statusList" value="{{x}}">{{x}}</option>
           </select>
         </div>
@@ -45,7 +49,7 @@
 
     <div class="row">
       <div class="col col-lg-12">
-          <button type="button" class="btn btn-primary active">Sumbit</button>
+          <button type="submit" class="btn btn-primary active">Sumbit</button>
       </div>
     </div>
   </div>

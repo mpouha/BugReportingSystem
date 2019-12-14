@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ListStruct } from './list-struct';
 
 @Injectable({
   providedIn: 'root'
@@ -25,4 +26,8 @@ export class BugrsRetrievalService {
     return this.http.get(this.endpointURL,{params: httpParams});
   }
 
+  createBug(bug: ListStruct) {
+    bug.createdAt = Date.now.toString();
+    return this.http.post(this.endpointURL, bug);
+  }
 }
