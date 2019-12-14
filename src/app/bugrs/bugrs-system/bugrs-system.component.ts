@@ -17,7 +17,8 @@ export class BugrsSystemComponent implements OnInit {
   numberOfDateOrdering: number;
   numberOfStatusOrdering: number;
 
-  constructor(private bugServiceRetrieval: BugrsRetrievalService ) { }
+
+  constructor(private bugServiceRetrieval: BugrsRetrievalService, private router: Router ) { }
 
   ngOnInit() {
     this.defineOrdering(0, 0, 0, 0, 0);
@@ -117,9 +118,9 @@ export class BugrsSystemComponent implements OnInit {
     this.numberOfStatusOrdering = numberOfStatusOrdering;
 
   }
-  routerNavigation(router: Router){
+  routerNavigation() {
 
-    router.navigate([''], {queryParams: { key : 'value'}});
+    this.router.navigate(['submitbug']);
   }
 
 }
