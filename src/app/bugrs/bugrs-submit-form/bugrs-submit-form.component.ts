@@ -10,6 +10,10 @@ export class BugrsSubmitFormComponent implements OnInit {
 
   submitForm: FormGroup;
 
+  priorityList: Array<String> = ["Minor","Major","Critical"];
+  reporterList: Array<String> = ["QA","PO","DEV"];
+  statusList: Array<string> = ["Ready for Test","Done","Rejected"];
+
   constructor() { }
 
   ngOnInit() {
