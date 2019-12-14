@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { BugrsRetrievalService } from '../bugrs-system/bugrs-retrieval.service';
+import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'brs-bugrs-submit-form',
@@ -17,9 +20,11 @@ export class BugrsSubmitFormComponent implements OnInit {
   statusList: Array<string> = ["Ready for Test", "Done", "Rejected"];
   bugID: string;
   temp: string;
-  constructor(private route: ActivatedRoute) {
+ // constructor(private route: ActivatedRoute) {
 
-  }
+ // }
+
+  constructor(private bugService: BugrsRetrievalService, private router: Router) { }
 
   ngOnInit() {
     this.submitForm = new FormGroup({
@@ -45,4 +50,14 @@ export class BugrsSubmitFormComponent implements OnInit {
     // Add 'implements OnDestroy' to the class.
   }
 
+
+  addEditBug() {
+    if (this.submitForm.invalid) {
+      return;
+    }
+
+    this.bugService.createBug(this.submitForm.value).pipe(
+      tap(() => this.router.navigate(['']))
+    ).subscribe();
+  }
 }
