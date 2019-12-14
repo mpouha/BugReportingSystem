@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BugrsRetrievalService } from './bugrs-retrieval.service';
 import { ListStruct } from './list-struct';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'brs-bugrs-system',
@@ -31,11 +32,10 @@ export class BugrsSystemComponent implements OnInit {
 
   sortListByTitle() {
     let orderingBy: string;
-    if(this.numberOfTitleOrdering === 0){
+    if (this.numberOfTitleOrdering === 0) {
       orderingBy = 'asc';
       this.defineOrdering(1, 0, 0, 0, 0);
-    }
-    else{
+    } else {
       orderingBy = 'desc';
       this.defineOrdering(0, 0, 0, 0, 0);
     }
@@ -46,11 +46,10 @@ export class BugrsSystemComponent implements OnInit {
 
   sortListByPriority() {
     let orderingBy: string;
-    if(this.numberOfPriorityOrdering === 0){
+    if (this.numberOfPriorityOrdering === 0) {
       orderingBy = 'asc';
       this.defineOrdering(0, 1, 0, 0, 0);
-    }
-    else{
+    } else   {
       orderingBy = 'desc';
       this.defineOrdering(0, 0, 0, 0, 0);
     }
@@ -116,6 +115,12 @@ export class BugrsSystemComponent implements OnInit {
     this.numberOfReporterOrdering = numberOfReporterOrdering;
     this.numberOfDateOrdering = numberOfDateOrdering;
     this.numberOfStatusOrdering = numberOfStatusOrdering;
+
+  }
+  routerNavigation(router: Router){
+
+    router.navigate([''],
+                        {queryParams: { key :"value"}});
 
   }
 }

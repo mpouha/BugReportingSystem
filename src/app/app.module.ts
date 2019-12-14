@@ -1,9 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
+import { RouterModule , Routes} from '@angular/router';
 import { AppComponent } from './app.component';
 import { BugrsModule } from './bugrs/bugrs.module';
 import { HttpClientModule } from '@angular/common/http';
+import { BugrsSystemComponent } from './bugrs/bugrs-system/bugrs-system.component';
+import { NgModule } from '@angular/core';
+
+
+const routes: Routes = [
+    {path :'',component: BugrsSystemComponent},
+  //  {path :''}
+
+];
 
 @NgModule({
   declarations: [
@@ -12,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     BugrsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(routes),
   ],
   providers: [],
   bootstrap: [AppComponent]
