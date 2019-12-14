@@ -119,8 +119,7 @@ export class BugrsSystemComponent implements OnInit {
   }
   routerNavigation(router: Router){
 
-    router.navigate([''],
-                        {queryParams: { key :"value"}});
+    router.navigate([''],{queryParams: { key : 'value'}});
 
   }
 }

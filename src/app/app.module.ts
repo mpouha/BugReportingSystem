@@ -5,14 +5,15 @@ import { BugrsModule } from './bugrs/bugrs.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BugrsSystemComponent } from './bugrs/bugrs-system/bugrs-system.component';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BugrsSubmitFormComponent, } from './bugrs/bugrs-submit-form/bugrs-submit-form.component';
 
 
 const routes: Routes = [
-    {path :'',component: BugrsSystemComponent},
-  //  {path :''}
+    {path : '', component: BugrsSystemComponent},
+    {path : 'submitbug', component: BugrsSubmitFormComponent },
 
 ];
-import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({

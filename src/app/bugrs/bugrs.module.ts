@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BugrsSystemComponent } from './bugrs-system/bugrs-system.component';
 import { BugrsSubmitFormComponent } from './bugrs-submit-form/bugrs-submit-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import {  RouterModule } from '@angular/router';
 
 
 
@@ -13,7 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   exports: [
     BugrsSystemComponent,

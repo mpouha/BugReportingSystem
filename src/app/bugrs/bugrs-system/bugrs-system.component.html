@@ -9,6 +9,14 @@
             <th scope="col" (click) = "sortListByReporter()">Reporter</th>
             <th scope="col" (click) = "sortListByDate()">Date Created</th>
             <th scope="col" (click) = "sortListByStatus()">Status</th>
+            <th style="text-align: center">
+              <button [routerLink]="['submitbug']"
+               type="button" class="btn btn-default btn-lg">
+                  <img src='assets/images/img_28512.png' width="20" height="20">
+
+
+              </button>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -17,10 +25,11 @@
             <td>{{bug.priority}}</td>
             <td>{{bug.reporter}}</td>
             <td>{{bug.createdAt | date}}</td>
-            <td>{{bug.status}}</td>
+            <td colspan="2">{{bug.status}}</td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
 </div>
+
