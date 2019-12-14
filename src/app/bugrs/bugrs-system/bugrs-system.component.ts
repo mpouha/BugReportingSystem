@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { BugrsRetrievalService } from './bugrs-retrieval.service';
 import { ListStruct } from './list-struct';
 import { Router } from '@angular/router';
@@ -118,9 +118,13 @@ export class BugrsSystemComponent implements OnInit {
     this.numberOfStatusOrdering = numberOfStatusOrdering;
 
   }
-  routerNavigation() {
+  AddBugNavigation() {
 
     this.router.navigate(['submitbug']);
+  }
+  EditBugNavigation(selected : number){
+    this.router.navigate(['submitbug'], { queryParams: { id: this.bugDataList[selected].id }});
+    console.log('idex is '+ selected);
   }
 
 }

@@ -2,7 +2,7 @@
   <div class="col col-lg-12">
     <div class="table-responsive">
       <table class="table table-hover table-striped">
-        <thead class="thead-dark">
+        <thead class="thead-light">
           <tr>
             <th scope="col" (click) = "sortListByTitle()">Title</th>
             <th scope="col" (click) = "sortListByPriority()">Priority</th>
@@ -10,7 +10,7 @@
             <th scope="col" (click) = "sortListByDate()">Date Created</th>
             <th scope="col" (click) = "sortListByStatus()">Status</th>
             <th style="text-align: center">
-              <button (click) = "routerNavigation()"
+              <button (click) = "AddBugNavigation()"
                type="button" class="btn btn-default btn-lg">
                   <img src='assets/images/img_28512.png' width="20" height="20">
               </button>
@@ -18,12 +18,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let bug of bugDataList">
+          <tr *ngFor="let bug of bugDataList ; let i = index ">
             <th scope="row">{{bug.title}}</th>
             <td>{{bug.priority}}</td>
             <td>{{bug.reporter}}</td>
             <td>{{bug.createdAt | date}}</td>
-            <td colspan="2">{{bug.status}}</td>
+            <td>{{bug.status}}</td>
+            <th style="text-align: center">
+                <button (click) = "EditBugNavigation(i,bug.id)"
+                 type="button" class="btn btn-default btn-lg">
+                    <img src='assets/images/img_28512.png' width="20" height="20">
+                </button>
+              </th>
           </tr>
         </tbody>
       </table>

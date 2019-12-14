@@ -12,6 +12,7 @@ import { BugrsSubmitFormComponent, } from './bugrs/bugrs-submit-form/bugrs-submi
 const routes: Routes = [
     {path : '', component: BugrsSystemComponent},
     {path : 'submitbug', component: BugrsSubmitFormComponent },
+    {path : 'submitbug/:id', component: BugrsSubmitFormComponent },
 
 ];
 

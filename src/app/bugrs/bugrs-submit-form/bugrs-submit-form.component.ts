@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'brs-bugrs-submit-form',
@@ -9,12 +11,15 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class BugrsSubmitFormComponent implements OnInit {
 
   submitForm: FormGroup;
+  routeSubscription: Subscription;
+  priorityList: Array<String> = ["Minor", "Major", "Critical"];
+  reporterList: Array<String> = ["QA", "PO", "DEV"];
+  statusList: Array<string> = ["Ready for Test", "Done", "Rejected"];
+  bugID: string;
+  temp: string;
+  constructor(private route: ActivatedRoute) {
 
-  priorityList: Array<String> = ["Minor","Major","Critical"];
-  reporterList: Array<String> = ["QA","PO","DEV"];
-  statusList: Array<string> = ["Ready for Test","Done","Rejected"];
-
-  constructor() { }
+  }
 
   ngOnInit() {
     this.submitForm = new FormGroup({
@@ -23,6 +28,21 @@ export class BugrsSubmitFormComponent implements OnInit {
       priority: new FormControl(),
       reporter: new FormControl(),
       status: new FormControl()
+
     });
+    // this.routeSubscription = this.route.params.subscribe((p) => {
+    // console.log(p.id); });
+    // const temp : string;
+    this.temp = window.location.href;
+    this.bugID = this.temp.slice(this.temp.indexOf('=') + 1, this.temp.length);
+    // this.bugID = window.location.href;
+    console.log('to pire= ' + this.bugID);
   }
+  // tslint:disable-next-line: use-lifecycle-interface
+  ngOnDestroy(): void {
+    // Called once, before the instance is destroyed.
+    // TODOOOOO
+    // Add 'implements OnDestroy' to the class.
+  }
+
 }
