@@ -4,6 +4,7 @@ export interface ListStruct {
   priority: string;
   reporter: string;
   createdAt: string;
+  updatedAt: string;
   status: string;
 
 

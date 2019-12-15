@@ -18,9 +18,9 @@ export class BugrsSubmitFormComponent implements OnInit {
   priorityList: Array<string> = ['Minor', 'Major', 'Critical'];
   reporterList: Array<string> = ['QA', 'PO', 'DEV'];
   statusList: Array<string> = ['Ready for test', 'Done', 'Rejected'];
-  bugID: string;
+  bugID: string ;
   temp: string;
-  Bug: Object;
+  Bug: any;
 
   constructor(private bugService: BugrsRetrievalService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
@@ -40,7 +40,6 @@ export class BugrsSubmitFormComponent implements OnInit {
 
   }
   getBug(bugID: string) {
-    // this.bugService.getBug(bugID).subscribe(console.log);
      this.bugService.getBug(bugID).subscribe(bugdetails => {
        this.submitForm.patchValue(bugdetails)  ,
        console.log(this.submitForm);
@@ -57,9 +56,14 @@ export class BugrsSubmitFormComponent implements OnInit {
     if (this.submitForm.invalid) {
       return;
     }
-
-    this.bugService.createBug(this.submitForm.value).pipe(
-      tap(() => this.router.navigate(['']))
-    ).subscribe();
+    if (this.bugID === '') {
+      this.bugService.createBug(this.submitForm.value).pipe(
+        tap(() => this.router.navigate(['']))
+            ).subscribe();
+    } else {
+      this.bugService.updateBug(this.submitForm.value, this.bugID).pipe(
+        tap(() => this.router.navigate(['']))
+      ).subscribe();
+    }
   }
 }
