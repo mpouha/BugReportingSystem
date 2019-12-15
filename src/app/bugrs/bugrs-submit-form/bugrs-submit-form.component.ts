@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { BugrsRetrievalService } from '../bugrs-system/bugrs-retrieval.service';
+import { BugrsRetrievalService } from '../bugrs-retrieval.service';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
