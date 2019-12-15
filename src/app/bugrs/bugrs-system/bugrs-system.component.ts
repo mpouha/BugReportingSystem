@@ -61,11 +61,10 @@ export class BugrsSystemComponent implements OnInit {
 
   sortListByReporter() {
     let orderingBy: string;
-    if(this.numberOfReporterOrdering === 0){
+    if (this.numberOfReporterOrdering === 0) {
       orderingBy = 'asc';
       this.defineOrdering(0, 0, 1, 0, 0);
-    }
-    else{
+    } else {
       orderingBy = 'desc';
       this.defineOrdering(0, 0, 0, 0, 0);
     }
@@ -76,11 +75,10 @@ export class BugrsSystemComponent implements OnInit {
 
   sortListByDate() {
     let orderingBy: string;
-    if(this.numberOfDateOrdering === 0){
+    if (this.numberOfDateOrdering === 0) {
       orderingBy = 'asc';
       this.defineOrdering(0, 0, 0, 1, 0);
-    }
-    else{
+    } else {
       orderingBy = 'desc';
       this.defineOrdering(0, 0, 0, 0, 0);
     }
@@ -91,11 +89,10 @@ export class BugrsSystemComponent implements OnInit {
 
   sortListByStatus() {
     let orderingBy: string;
-    if(this.numberOfStatusOrdering === 0){
+    if (this.numberOfStatusOrdering === 0) {
       orderingBy = 'asc';
       this.defineOrdering(0, 0, 0, 0, 1);
-    }
-    else{
+    } else {
       orderingBy = 'desc';
       this.defineOrdering(0, 0, 0, 0, 0);
     }
@@ -109,8 +106,7 @@ export class BugrsSystemComponent implements OnInit {
                  numberOfReporterOrdering: number,
                  numberOfDateOrdering: number,
                  numberOfStatusOrdering: number,
-                 )
-  {
+                 ) {
     this.numberOfTitleOrdering = numberOfTitleOrdering;
     this.numberOfPriorityOrdering = numberOfPriorityOrdering;
     this.numberOfReporterOrdering = numberOfReporterOrdering;
@@ -122,7 +118,7 @@ export class BugrsSystemComponent implements OnInit {
 
     this.router.navigate(['submitbug']);
   }
-  EditBugNavigation(bugId : string){
+  EditBugNavigation(bugId: string) {
     this.router.navigate(['submitbug', bugId]);
     // console.log('idex is '+ selected);
   }

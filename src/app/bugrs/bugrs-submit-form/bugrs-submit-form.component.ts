@@ -17,9 +17,10 @@ export class BugrsSubmitFormComponent implements OnInit {
   routeSubscription: Subscription;
   priorityList: Array<string> = ['Minor', 'Major', 'Critical'];
   reporterList: Array<string> = ['QA', 'PO', 'DEV'];
-  statusList: Array<string> = ['Ready for Test', 'Done', 'Rejected'];
+  statusList: Array<string> = ['Ready for test', 'Done', 'Rejected'];
   bugID: string;
   temp: string;
+  Bug: Object;
 
   constructor(private bugService: BugrsRetrievalService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
@@ -36,9 +37,15 @@ export class BugrsSubmitFormComponent implements OnInit {
     this.getBug(this.bugID);
 
     console.log('to pire= ' + this.bugID);
+
   }
   getBug(bugID: string) {
-    this.bugService.getBug(bugID).subscribe(console.log);
+    // this.bugService.getBug(bugID).subscribe(console.log);
+     this.bugService.getBug(bugID).subscribe(bugdetails => {
+       this.submitForm.patchValue(bugdetails)  ,
+       console.log(this.submitForm);
+     }
+     );
   }
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnDestroy(): void {
@@ -46,8 +53,6 @@ export class BugrsSubmitFormComponent implements OnInit {
     // TODOOOOO
     // Add 'implements OnDestroy' to the class.
   }
-
-
   addEditBug() {
     if (this.submitForm.invalid) {
       return;
