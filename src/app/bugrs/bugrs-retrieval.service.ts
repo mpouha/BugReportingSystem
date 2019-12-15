@@ -14,14 +14,14 @@ export class BugrsRetrievalService {
 
   getBugsList(): Observable<any> {
     const httpParams = new HttpParams() .set('sort', `title,asc`)
-                                        .set('size', 'all');
+                                        .set('size', '10');
 
     return this.http.get(this.endpointURL, {params: httpParams});
   }
 
   getBugsSortedList(sortBy: string, orderBy: string): Observable<any> {
     const httpParams = new HttpParams() .set('sort', `${sortBy},${orderBy}`)
-                                        .set('size', 'all');
+                                        .set('size', '10');
 
     return this.http.get(this.endpointURL, {params: httpParams});
   }
@@ -34,10 +34,10 @@ export class BugrsRetrievalService {
   getBug(id: string) {
     return this.http.get(`${this.endpointURL}/${id}`);
   }
+
   updateBug(bug: ListStruct, id: string) {
     bug.updatedAt =  Date.now.toString();
 
     return this.http.put(`${this.endpointURL}/${id}`, bug);
-
   }
 }

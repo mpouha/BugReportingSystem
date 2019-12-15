@@ -9,7 +9,7 @@
             <th scope="col" (click) = "sortListByReporter()">Reporter</th>
             <th scope="col" (click) = "sortListByDate()">Date Created</th>
             <th scope="col" (click) = "sortListByStatus()">Status</th>
-            <th style="text-align: center">
+            <th style="text-align: center;border-left:1px solid #ddd;">
               <button (click) = "AddBugNavigation()"
                type="button" class="btn btn-default btn-lg">
                   <img src='assets/images/img_28512.png' width="20" height="20">
@@ -24,12 +24,12 @@
             <td>{{bug.reporter}}</td>
             <td>{{bug.createdAt | date}}</td>
             <td>{{bug.status}}</td>
-            <th style="text-align: center">
-                <button (click) = "EditBugNavigation(bug.id)"
+            <th style="text-align: center;border-left:1px solid #ddd;">
+              <button (click) = "EditBugNavigation(bug.id)"
                  type="button" class="btn btn-default btn-lg">
                     <img src='assets/images/img_28512.png' width="20" height="20">
-                </button>
-              </th>
+              </button>
+            </th>
           </tr>
         </tbody>
       </table>
