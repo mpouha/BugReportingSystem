@@ -1,7 +1,7 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
-import { BugrsRetrievalService } from './bugrs-retrieval.service';
-import { ListStruct } from './list-struct';
+import { Component, OnInit } from '@angular/core';
+import { ListStruct } from '../list-struct';
 import { Router } from '@angular/router';
+import { BugrsRetrievalService } from '../bugrs-retrieval.service';
 
 @Component({
   selector: 'brs-bugrs-system',

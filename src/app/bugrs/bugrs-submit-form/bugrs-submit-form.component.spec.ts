@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BugrsSubmitFormComponent } from './bugrs-submit-form.component';
 
 describe('BugrsSubmitFormComponent', () => {
