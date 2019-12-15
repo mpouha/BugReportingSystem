@@ -30,4 +30,8 @@ export class BugrsRetrievalService {
     bug.createdAt = Date.now.toString();
     return this.http.post(this.endpointURL, bug);
   }
+
+  getBug(id: string) {
+    return this.http.get(`${this.endpointURL}/${id}`);
+  }
 }

@@ -5,14 +5,12 @@ import { Subscription } from 'rxjs';
 import { BugrsRetrievalService } from '../bugrs-system/bugrs-retrieval.service';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'brs-bugrs-submit-form',
   templateUrl: './bugrs-submit-form.component.html',
   styleUrls: ['./bugrs-submit-form.component.scss']
 })
 export class BugrsSubmitFormComponent implements OnInit {
-
   submitForm: FormGroup;
   routeSubscription: Subscription;
   priorityList: Array<string> = ['Minor', 'Major', 'Critical'];
@@ -20,9 +18,7 @@ export class BugrsSubmitFormComponent implements OnInit {
   statusList: Array<string> = ['Ready for Test', 'Done', 'Rejected'];
   bugID: string;
   temp: string;
-
   constructor(private bugService: BugrsRetrievalService, private router: Router, private activatedRoute: ActivatedRoute) { }
-
   ngOnInit() {
     this.submitForm = new FormGroup({
       title: new FormControl(),
@@ -30,11 +26,9 @@ export class BugrsSubmitFormComponent implements OnInit {
       priority: new FormControl(),
       reporter: new FormControl(),
       status: new FormControl()
-
     });
     this.bugID = this.activatedRoute.snapshot.params.id;
     this.getBug(this.bugID);
-
     console.log('to pire= ' + this.bugID);
   }
   getBug(bugID: string) {
@@ -46,15 +40,10 @@ export class BugrsSubmitFormComponent implements OnInit {
     // TODOOOOO
     // Add 'implements OnDestroy' to the class.
   }
-
-
   addEditBug() {
     if (this.submitForm.invalid) {
       return;
     }
-
-    this.bugService.createBug(this.submitForm.value).pipe(
-      tap(() => this.router.navigate(['']))
-    ).subscribe();
+    this.bugService.createBug(this.submitForm.value).pipe(tap(() => this.router.navigate(['']))).subscribe();
   }
 }

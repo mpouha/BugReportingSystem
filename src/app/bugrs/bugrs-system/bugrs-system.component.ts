@@ -122,9 +122,9 @@ export class BugrsSystemComponent implements OnInit {
 
     this.router.navigate(['submitbug']);
   }
-  EditBugNavigation(selected : number){
-    this.router.navigate(['submitbug'], { queryParams: { id: this.bugDataList[selected].id }});
-    console.log('idex is '+ selected);
+  EditBugNavigation(bugId : string){
+    this.router.navigate(['submitbug', bugId]);
+    // console.log('idex is '+ selected);
   }
 
 }
