@@ -66,4 +66,7 @@ export class BugrsSubmitFormComponent implements OnInit {
       ).subscribe();
     }
   }
+  pushButtonCancel(){
+    this.router.navigate(['']);
+  }
 }
