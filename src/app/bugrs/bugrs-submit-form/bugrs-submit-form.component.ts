@@ -68,7 +68,8 @@ export class BugrsSubmitFormComponent implements OnInit {
       this.bugService.createBug(this.submitForm.value).pipe(
         tap(() => this.router.navigate(['']))
             ).subscribe();
-    } else {
+    }
+    else {
       this.bugService.updateBug(this.submitForm.value, this.bugID).pipe(
         tap(() => this.router.navigate(['']))
       ).subscribe();

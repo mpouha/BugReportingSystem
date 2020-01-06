@@ -13,15 +13,15 @@ export class BugrsRetrievalService {
   constructor(private http: HttpClient) { }
 
   getBugsList(): Observable<any> {
-    const httpParams = new HttpParams() .set('sort', `title,asc`)
-                                        .set('size', '10');
+    const httpParams = new HttpParams() .set('sort', `title,desc`)
+                                        .set('size', 'all');
 
     return this.http.get(this.endpointURL, {params: httpParams});
   }
 
   getBugsSortedList(sortBy: string, orderBy: string): Observable<any> {
     const httpParams = new HttpParams() .set('sort', `${sortBy},${orderBy}`)
-                                        .set('size', '10');
+                                        .set('size', 'all');
 
     return this.http.get(this.endpointURL, {params: httpParams});
   }
