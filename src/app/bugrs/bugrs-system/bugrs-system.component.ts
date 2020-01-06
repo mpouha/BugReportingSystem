@@ -16,6 +16,7 @@ export class BugrsSystemComponent implements OnInit {
   numberOfReporterOrdering: number;
   numberOfDateOrdering: number;
   numberOfStatusOrdering: number;
+  p = 1;
 
   defineOrdering(numberOfTitleOrdering: number,
     numberOfPriorityOrdering: number,

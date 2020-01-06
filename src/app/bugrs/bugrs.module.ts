@@ -4,8 +4,7 @@ import { BugrsSystemComponent } from './bugrs-system/bugrs-system.component';
 import { BugrsSubmitFormComponent } from './bugrs-submit-form/bugrs-submit-form.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
-
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -16,7 +15,8 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   exports: [
     BugrsSystemComponent,
