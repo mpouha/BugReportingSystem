@@ -14,7 +14,7 @@ export class BugrsRetrievalService {
 
   getBugsList(): Observable<any> {
     const httpParams = new HttpParams() .set('sort', `title,desc`)
-                                        .set('size', '10');
+                                        .set('size', 'all');
 
     return this.http.get(this.endpointURL, {params: httpParams});
   }
