@@ -18,7 +18,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let bug of bugDataList ; let i = index ">
+          <tr *ngFor="let bug of bugDataList | paginate: { itemsPerPage: 10, currentPage: p }">
             <th scope="row">{{bug.title}}</th>
             <td>{{bug.priority}}</td>
             <td>{{bug.reporter}}</td>
@@ -31,6 +31,7 @@
               </button>
             </th>
           </tr>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </tbody>
       </table>
     </div>
