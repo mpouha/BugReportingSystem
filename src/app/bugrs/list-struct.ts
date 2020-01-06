@@ -6,6 +6,4 @@ export interface ListStruct {
   createdAt: string;
   updatedAt: string;
   status: string;
-
-
 }

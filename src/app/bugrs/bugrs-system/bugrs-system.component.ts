@@ -17,8 +17,20 @@ export class BugrsSystemComponent implements OnInit {
   numberOfDateOrdering: number;
   numberOfStatusOrdering: number;
 
+  defineOrdering(numberOfTitleOrdering: number,
+    numberOfPriorityOrdering: number,
+    numberOfReporterOrdering: number,
+    numberOfDateOrdering: number,
+    numberOfStatusOrdering: number,
+  ) {
+    this.numberOfTitleOrdering = numberOfTitleOrdering;
+    this.numberOfPriorityOrdering = numberOfPriorityOrdering;
+    this.numberOfReporterOrdering = numberOfReporterOrdering;
+    this.numberOfDateOrdering = numberOfDateOrdering;
+    this.numberOfStatusOrdering = numberOfStatusOrdering;
+  }
 
-  constructor(private bugServiceRetrieval: BugrsRetrievalService, private router: Router ) { }
+  constructor(private bugServiceRetrieval: BugrsRetrievalService, private router: Router) { }
 
   ngOnInit() {
     this.defineOrdering(0, 0, 0, 0, 0);
@@ -50,7 +62,7 @@ export class BugrsSystemComponent implements OnInit {
     if (this.numberOfPriorityOrdering === 0) {
       orderingBy = 'asc';
       this.defineOrdering(0, 1, 0, 0, 0);
-    } else   {
+    } else {
       orderingBy = 'desc';
       this.defineOrdering(0, 0, 0, 0, 0);
     }
@@ -101,26 +113,12 @@ export class BugrsSystemComponent implements OnInit {
     });
   }
 
-  defineOrdering(numberOfTitleOrdering: number,
-                 numberOfPriorityOrdering: number,
-                 numberOfReporterOrdering: number,
-                 numberOfDateOrdering: number,
-                 numberOfStatusOrdering: number,
-                 ) {
-    this.numberOfTitleOrdering = numberOfTitleOrdering;
-    this.numberOfPriorityOrdering = numberOfPriorityOrdering;
-    this.numberOfReporterOrdering = numberOfReporterOrdering;
-    this.numberOfDateOrdering = numberOfDateOrdering;
-    this.numberOfStatusOrdering = numberOfStatusOrdering;
-
-  }
   AddBugNavigation() {
 
     this.router.navigate(['submitbug', '']);
   }
+
   EditBugNavigation(bugId: string) {
     this.router.navigate(['submitbug', bugId]);
-    // console.log('idex is '+ selected);
   }
-
 }

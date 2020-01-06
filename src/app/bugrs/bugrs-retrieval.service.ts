@@ -13,7 +13,7 @@ export class BugrsRetrievalService {
   constructor(private http: HttpClient) { }
 
   getBugsList(): Observable<any> {
-    const httpParams = new HttpParams() .set('sort', `title,asc`)
+    const httpParams = new HttpParams() .set('sort', `title,desc`)
                                         .set('size', '10');
 
     return this.http.get(this.endpointURL, {params: httpParams});

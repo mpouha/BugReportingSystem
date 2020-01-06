@@ -7,13 +7,13 @@ import { BugrsSystemComponent } from './bugrs/bugrs-system/bugrs-system.componen
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BugrsSubmitFormComponent, } from './bugrs/bugrs-submit-form/bugrs-submit-form.component';
+import { CommonModulesModule } from './common-modules/common-modules.module';
 
 
 const routes: Routes = [
     {path : '', component: BugrsSystemComponent},
     {path : 'submitbug', component: BugrsSubmitFormComponent },
     {path : 'submitbug/:id', component: BugrsSubmitFormComponent },
-
 ];
 
 
@@ -24,6 +24,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     BugrsModule,
+    CommonModulesModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
     ReactiveFormsModule

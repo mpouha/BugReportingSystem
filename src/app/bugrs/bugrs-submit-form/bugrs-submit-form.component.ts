@@ -31,14 +31,12 @@ export class BugrsSubmitFormComponent implements OnInit {
       priority: new FormControl(),
       reporter: new FormControl(),
       status: new FormControl()
-
     });
+
     this.bugID = this.activatedRoute.snapshot.params.id;
     this.getBug(this.bugID);
-
-    console.log('to pire= ' + this.bugID);
-
   }
+
   getBug(bugID: string) {
      this.bugService.getBug(bugID).subscribe(bugdetails => {
        this.submitForm.patchValue(bugdetails)  ,
@@ -52,6 +50,7 @@ export class BugrsSubmitFormComponent implements OnInit {
     // TODOOOOO
     // Add 'implements OnDestroy' to the class.
   }
+
   addEditBug() {
     if (this.submitForm.invalid) {
       return;
@@ -60,13 +59,15 @@ export class BugrsSubmitFormComponent implements OnInit {
       this.bugService.createBug(this.submitForm.value).pipe(
         tap(() => this.router.navigate(['']))
             ).subscribe();
-    } else {
+    }
+    else {
       this.bugService.updateBug(this.submitForm.value, this.bugID).pipe(
         tap(() => this.router.navigate(['']))
       ).subscribe();
     }
   }
-  pushButtonCancel(){
+
+  pushButtonCancel() {
     this.router.navigate(['']);
   }
 }
