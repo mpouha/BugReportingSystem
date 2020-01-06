@@ -115,7 +115,6 @@ export class BugrsSystemComponent implements OnInit {
   }
 
   AddBugNavigation() {
-
     this.router.navigate(['submitbug', '']);
   }
 

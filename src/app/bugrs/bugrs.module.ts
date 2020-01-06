@@ -16,7 +16,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     ReactiveFormsModule,
     RouterModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   exports: [
     BugrsSystemComponent,
