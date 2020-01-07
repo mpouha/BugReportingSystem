@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { BugrsRetrievalService } from '../bugrs-retrieval.service';
 import { tap, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { bugComment } from '../comment-struct';
+import { comment } from '../comment';
 import { ListStruct } from '../list-struct';
 
 @Component({
@@ -14,8 +14,7 @@ import { ListStruct } from '../list-struct';
   styleUrls: ['./bugrs-submit-form.component.scss']
 })
 export class BugrsSubmitFormComponent implements OnInit {
-  @Input() comments: bugComment[];
-  //@Output() comment: bugComment;
+  @Input() comments: comment[];
   submitForm: FormGroup;
   CommentsForm: FormGroup;
   routeSubscription: Subscription;
@@ -25,7 +24,7 @@ export class BugrsSubmitFormComponent implements OnInit {
   bugID: string ;
   temp: string;
   bug: ListStruct;
-  comment: bugComment;
+  comment: comment;
 
   constructor(private bugService: BugrsRetrievalService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
@@ -68,8 +67,7 @@ export class BugrsSubmitFormComponent implements OnInit {
       this.bugService.createBug(this.submitForm.value).pipe(
         tap(() => this.router.navigate(['']))
             ).subscribe();
-    }
-    else {
+    } else {
       this.bugService.updateBug(this.submitForm.value, this.bugID).pipe(
         tap(() => this.router.navigate(['']))
       ).subscribe();
@@ -79,18 +77,14 @@ export class BugrsSubmitFormComponent implements OnInit {
     this.router.navigate(['']);
   }
   submitComment() {
-    //this.CommentsForm.patchValue(this.comments);
-    console.log(this.bug.comments);
-    console.log("forma"+this.CommentsForm.value);
-    /*if (!this.comment.reporter || !this.comment.description) {
-      this.toastr.warning(
-        `You didn't add a comment`
-      );
-      return;
-    } else {*/
-   /*   this.bugService.updateBug(this.bug.comments.reporter, this.comment.description);
-      this.bug.reporter = undefined;
-      this.bug.description = undefined;
-    //}*/
+    this.bug.comments = this.bug.comments || [];
+
+    this.bug.comments.push( this.CommentsForm.value);
+    if (this.bugID) {
+      this.bugService.updateBug(this.bug,this.bugID);
+    }
+    // this.bug.reporter = undefined;
+    //  this.bug.description = undefined;
+    }
   }
-}
+

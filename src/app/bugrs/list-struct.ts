@@ -1,4 +1,4 @@
-import { bugComment } from "./comment-struct";
+import { comment } from "./comment";
 
 export interface ListStruct {
   id: string;
@@ -8,6 +8,6 @@ export interface ListStruct {
   createdAt: string;
   updatedAt: string;
   status: string;
-  comments: bugComment[];
+  comments: comment[];
 }
 

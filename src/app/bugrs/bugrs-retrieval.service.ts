@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ListStruct } from './list-struct';
+import { comment } from './comment';
 
 @Injectable({
   providedIn: 'root'
@@ -51,4 +52,6 @@ export class BugrsRetrievalService {
 
     return this.http.put(`${this.endpointURL}/${id}`, bug);
   }
+
+
 }
