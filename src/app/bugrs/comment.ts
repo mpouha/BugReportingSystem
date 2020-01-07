@@ -1,4 +1,4 @@
-export interface bugComment {
+export interface comment {
   _id: string;
   reporter: string;
   description: string;
