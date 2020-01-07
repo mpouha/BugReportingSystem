@@ -22,7 +22,8 @@ import { BugrsSearchFormComponent } from './bugrs-search-form/bugrs-search-form.
   ],
   exports: [
     BugrsSystemComponent,
-    BugrsSubmitFormComponent,
+    BugrsSearchFormComponent,
+    BugrsSubmitFormComponent
   ]
 })
 export class BugrsModule { }
