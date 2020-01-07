@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+/*import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 // import { BugrsRetrievalService } from '../bugrs-system/bugrs-retrieval.service';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { BugrsRetrievalService } from '../bugrs-retrieval.service';
+import { ListStruct } from '../list-struct';
 
 @Component({
   selector: 'brs-bugrs-submit-form',
@@ -14,12 +15,14 @@ import { BugrsRetrievalService } from '../bugrs-retrieval.service';
 })
 export class BugrsSubmitFormComponent implements OnInit {
   submitForm: FormGroup;
+  CommentsForm: FormGroup;
   routeSubscription: Subscription;
   priorityList: Array<string> = ['Minor', 'Major', 'Critical'];
   reporterList: Array<string> = ['QA', 'PO', 'DEV'];
   statusList: Array<string> = ['Ready for Test', 'Done', 'Rejected'];
   bugID: string;
   temp: string;
+  comments: ListStruct['comments'];
   constructor(private bugService: BugrsRetrievalService, private router: Router, private activatedRoute: ActivatedRoute) { }
   ngOnInit() {
     this.submitForm = new FormGroup({
@@ -27,8 +30,21 @@ export class BugrsSubmitFormComponent implements OnInit {
       description: new FormControl(),
       priority: new FormControl(),
       reporter: new FormControl(),
-      status: new FormControl()
+      status: new FormControl(),
+      comments: new FormControl(),
+      //commentsdescription: new FormControl(),
+      //commentsreporter: new FormControl(),
     });
+    this.CommentsForm = new FormGroup({
+      comments:  new FormArray([
+          new FormGroup({
+            _id: new FormControl(),
+           description: new FormControl(),
+           reporter: new FormControl(),
+          }),
+       ]),
+
+     });
     this.bugID = this.activatedRoute.snapshot.params.id;
     this.getBug(this.bugID);
     console.log('to pire= ' + this.bugID);
@@ -49,3 +65,4 @@ export class BugrsSubmitFormComponent implements OnInit {
     this.bugService.createBug(this.submitForm.value).pipe(tap(() => this.router.navigate(['']))).subscribe();
   }
 }
+*/
