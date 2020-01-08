@@ -30,11 +30,11 @@
             <td>{{bug.createdAt | date}}</td>
             <td>{{bug.status}}</td>
             <th style="text-align: center;border-left:1px solid #ddd;">
-              <button matTooltip="Edit bug" (click)="EditBugNavigation(bug.id)" type="button" class="btn btn-default btn-lg" >
+              <button (click)="EditBugNavigation(bug.id)" type="button" class="btn btn-default btn-lg">
                 <img src='assets/images/84380.png' width="20" height="20">
               </button>
               &nbsp;
-              <button (click)="deleteBug(bug.id, bug)" type="button" class="btn btn-default btn-lg" matTooltip="Delete bug">
+              <button (click)="deleteBug(bug.id, bug)" type="button" class="btn btn-default btn-lg">
                 <img src='assets/images/delete.png' width="20" height="20">
               </button>
             </th>
