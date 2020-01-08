@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { FormGroup, FormControl, FormArray } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { BugrsRetrievalService } from '../bugrs-retrieval.service';
@@ -25,15 +25,16 @@ export class BugrsSubmitFormComponent implements OnInit {
   temp: string;
   bug: ListStruct;
   comment: comment;
+  isStatusRequired = false;
 
   constructor(private bugService: BugrsRetrievalService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.submitForm = new FormGroup({
-      title: new FormControl(),
-      description: new FormControl(),
-      priority: new FormControl(),
-      reporter: new FormControl(),
+      title: new FormControl(null, Validators.required),
+      description: new FormControl(null, Validators.required),
+      priority: new FormControl(null, Validators.required),
+      reporter: new FormControl(null, Validators.required),
       status: new FormControl(),
 
 
@@ -86,5 +87,17 @@ export class BugrsSubmitFormComponent implements OnInit {
     // this.bug.reporter = undefined;
     //  this.bug.description = undefined;
     }
+
+    valueOfReporterChange(){
+      if (this.submitForm.controls.reporter.value === 'QA'){
+        console.log('mpike');
+        this.submitForm.controls.status.setValidators(Validators.required);
+      }
+      else {
+        this.submitForm.controls.status.clearValidators();
+      }
+      this.submitForm.controls.status.updateValueAndValidity();
+    }
+
   }
 

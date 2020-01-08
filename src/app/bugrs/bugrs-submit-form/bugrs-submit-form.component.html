@@ -6,10 +6,16 @@
           <div class="col col-lg-6">
             <label>Title</label>
             <input type="text" class="form-control" formControlName="title" placeholder="Set a Title">
+            <div *ngIf="submitForm.get('title').invalid" class="text-danger">
+              Field is required
+            </div>
           </div>
           <div class="col col-lg-6">
             <label>Description</label>
             <input formControlName="description" type="text" class="form-control" placeholder="Description">
+            <div *ngIf="submitForm.get('description').invalid" class="text-danger">
+              Field is required
+            </div>
           </div>
         </div>
 
@@ -21,16 +27,22 @@
                 <option value="" selected></option>
                 <option *ngFor="let x of priorityList;let i = index" value="{{i+1}}">{{x}}</option>
               </select>
+              <div *ngIf="submitForm.get('priority').invalid" class="text-danger">
+                Field is required
+              </div>
             </div>
           </div>
 
           <div class="col col-lg-6">
             <div class="form-group">
               <label>Reporter</label>
-              <select class="form-control" formControlName="reporter">
+              <select class="form-control" formControlName="reporter" (change)="valueOfReporterChange()">
                 <option value="" selected></option>
                 <option *ngFor="let x of reporterList;" value="{{x}}">{{x}}</option>
               </select>
+              <div *ngIf="submitForm.get('reporter').invalid" class="text-danger">
+                Field is required
+              </div>
             </div>
           </div>
         </div>
@@ -43,6 +55,9 @@
                 <option value="" selected></option>
                 <option *ngFor="let x of statusList" value="{{x}}">{{x}}</option>
               </select>
+              <div *ngIf="submitForm.get('status').invalid" class="text-danger">
+                Field is required
+              </div>
             </div>
           </div>
         </div>
