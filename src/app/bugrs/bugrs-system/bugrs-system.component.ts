@@ -19,11 +19,11 @@ export class BugrsSystemComponent implements OnInit {
   p = 1;
 
   defineOrdering(numberOfTitleOrdering: number,
-    numberOfPriorityOrdering: number,
-    numberOfReporterOrdering: number,
-    numberOfDateOrdering: number,
-    numberOfStatusOrdering: number,
-  ) {
+                 numberOfPriorityOrdering: number,
+                 numberOfReporterOrdering: number,
+                 numberOfDateOrdering: number,
+                 numberOfStatusOrdering: number)
+  {
     this.numberOfTitleOrdering = numberOfTitleOrdering;
     this.numberOfPriorityOrdering = numberOfPriorityOrdering;
     this.numberOfReporterOrdering = numberOfReporterOrdering;
@@ -115,7 +115,6 @@ export class BugrsSystemComponent implements OnInit {
   }
 
   AddBugNavigation() {
-
     this.router.navigate(['submitbug', '']);
   }
 
@@ -131,5 +130,12 @@ export class BugrsSystemComponent implements OnInit {
           this.fillBugList();
         }
       });
+  }
+
+  receiveMessage($event) {
+    this.bugServiceRetrieval.getSearchResults($event.title,$event.priority,$event.reporter,$event.status).subscribe( (response) => {
+      this.bugDataList = response;
+      console.log($event.title,$event.priority,$event.reporter,$event.status,this.bugDataList);
+    });
   }
 }

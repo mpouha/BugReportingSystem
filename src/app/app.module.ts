@@ -11,12 +11,13 @@ import { CommonModulesModule } from './common-modules/common-modules.module';
 import {MatTooltipModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 const routes: Routes = [
     {path : '', component: BugrsSystemComponent},
     {path : 'submitbug', component: BugrsSubmitFormComponent },
     {path : 'submitbug/:id', component: BugrsSubmitFormComponent },
+    {path : 'listView', component: BugrsSystemComponent }
 ];
-
 
 @NgModule({
   declarations: [

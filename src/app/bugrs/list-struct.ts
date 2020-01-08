@@ -1,3 +1,5 @@
+import { comment } from "./comment";
+
 export interface ListStruct {
   id: string;
   title: string;
@@ -7,4 +9,6 @@ export interface ListStruct {
   createdAt: string;
   updatedAt: string;
   status: string;
+  comments: comment[];
 }
+

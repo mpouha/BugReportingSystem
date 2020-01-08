@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ListStruct } from './list-struct';
+import { comment } from './comment';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,17 @@ export class BugrsRetrievalService {
     const httpParams = new HttpParams() .set('sort', `${sortBy},${orderBy}`)
                                         .set('size', 'all');
 
+    return this.http.get(this.endpointURL, {params: httpParams});
+  }
+
+  getSearchResults(title: string, priority: string, reporter: string, status: string): Observable<any> {
+    const httpParams = new HttpParams() .set('sort', 'title,desc')
+                                        .set('size', 'all')
+                                        .set('title', `${title}`)
+                                        .set('priority', `${priority}`)
+                                        .set('reporter', `${reporter}`)
+                                        .set('status', `${status}`);
+    console.log(this.http.get(this.endpointURL, {params: httpParams}));
     return this.http.get(this.endpointURL, {params: httpParams});
   }
 

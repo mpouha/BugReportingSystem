@@ -5,22 +5,25 @@ import { BugrsSubmitFormComponent } from './bugrs-submit-form/bugrs-submit-form.
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { BugrsSearchFormComponent } from './bugrs-search-form/bugrs-search-form.component';
 
 @NgModule({
   declarations: [
     BugrsSystemComponent,
-    BugrsSubmitFormComponent
+    BugrsSubmitFormComponent,
+    BugrsSearchFormComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   exports: [
     BugrsSystemComponent,
-    BugrsSubmitFormComponent,
+    BugrsSearchFormComponent,
+    BugrsSubmitFormComponent
   ]
 })
 export class BugrsModule { }
