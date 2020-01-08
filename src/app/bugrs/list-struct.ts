@@ -1,6 +1,7 @@
 export interface ListStruct {
   id: string;
   title: string;
+  description: string;
   priority: string;
   reporter: string;
   createdAt: string;

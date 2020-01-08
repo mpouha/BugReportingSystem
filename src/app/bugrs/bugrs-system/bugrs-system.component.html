@@ -7,7 +7,7 @@
       <table class="table table-hover table-striped">
         <thead>
           <tr>
-            <th scope="col" (click)="sortListByTitle()">Title</th>
+            <th matTooltip="Edit bug" scope="col" (click)="sortListByTitle()">Title</th>
             <th scope="col" (click)="sortListByPriority()">Priority</th>
             <th scope="col" (click)="sortListByReporter()">Reporter</th>
             <th scope="col" (click)="sortListByDate()">Date Created</th>
@@ -27,8 +27,12 @@
             <td>{{bug.createdAt | date}}</td>
             <td>{{bug.status}}</td>
             <th style="text-align: center;border-left:1px solid #ddd;">
-              <button (click)="EditBugNavigation(bug.id)" type="button" class="btn btn-default btn-lg">
+              <button matTooltip="Edit bug" (click)="EditBugNavigation(bug.id)" type="button" class="btn btn-default btn-lg" >
                 <img src='assets/images/84380.png' width="20" height="20">
+              </button>
+              &nbsp;
+              <button (click)="deleteBug(bug.id, bug)" type="button" class="btn btn-default btn-lg" matTooltip="Delete bug">
+                <img src='assets/images/delete.png' width="20" height="20">
               </button>
             </th>
           </tr>

@@ -122,4 +122,14 @@ export class BugrsSystemComponent implements OnInit {
   EditBugNavigation(bugId: string) {
     this.router.navigate(['submitbug', bugId]);
   }
+
+  deleteBug(bugId: string, bug: ListStruct){
+
+    this.bugServiceRetrieval.deleteBug(bugId, bug).subscribe(response => {
+      if(response === true) {
+          this.bugDataList = [];
+          this.fillBugList();
+        }
+      });
+  }
 }

@@ -14,7 +14,7 @@ export class BugrsRetrievalService {
 
   getBugsList(): Observable<any> {
     const httpParams = new HttpParams() .set('sort', `title,desc`)
-                                        .set('size', '10');
+                                        .set('size', 'all');
 
     return this.http.get(this.endpointURL, {params: httpParams});
   }
@@ -39,5 +39,17 @@ export class BugrsRetrievalService {
     bug.updatedAt =  Date.now.toString();
 
     return this.http.put(`${this.endpointURL}/${id}`, bug);
+  }
+
+  deleteBug(id: string, bug: ListStruct) {
+    const httpParams = new HttpParams().set('id', id);
+    httpParams.set('title', bug.title);
+    httpParams.set('description', bug.description);
+    httpParams.set('priority', bug.priority);
+    httpParams.set('reporter', bug.reporter);
+    const options = { params: httpParams };
+
+    console.log(`${this.endpointURL}/${id}`);
+    return this.http.delete(`${this.endpointURL}/${id}`, options);
   }
 }
