@@ -35,10 +35,10 @@ export class BugrsSearchFormComponent implements OnInit {
 
   search() {
     this.messageEvent.emit({
-      title: this.searchForm.value.title,
-      priority: this.searchForm.value.priority,
-      reporter: this.searchForm.value.reporter,
-      status: this.searchForm.value.status
+      title: this.searchForm.value.title == null ? '' : this.searchForm.value.title,
+      priority: this.searchForm.value.priority == null ? '' : this.searchForm.value.priority,
+      reporter: this.searchForm.value.reporter == null ? '' : this.searchForm.value.reporter,
+      status: this.searchForm.value.status == null ? '' : this.searchForm.value.reporter
     });
   }
 }

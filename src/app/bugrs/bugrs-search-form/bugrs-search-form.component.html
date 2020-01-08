@@ -11,7 +11,7 @@
         <div class="form-group">
           <label>Priority</label>
           <select class="form-control" formControlName="priority">
-            <option value=" "></option>
+            <option value="" selected></option>
             <option *ngFor="let x of priorityList;let i = index" value="{{i+1}}">{{x}}</option>
           </select>
         </div>
@@ -21,7 +21,7 @@
         <div class="form-group">
           <label>Reporter</label>
           <select class="form-control" formControlName="reporter">
-            <option value=" "></option>
+            <option value="" selected></option>
             <option *ngFor="let x of reporterList;" value="{{x}}">{{x}}</option>
           </select>
         </div>
@@ -33,7 +33,7 @@
         <div class="form-group">
           <label>Status</label>
           <select class="form-control" formControlName="status">
-            <option value=" "></option>
+            <option value="" selected></option>
             <option *ngFor="let x of statusList" value="{{x}}">{{x}}</option>
           </select>
         </div>
