@@ -7,6 +7,7 @@ import { tap, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { comment } from '../comment';
 import { ListStruct } from '../list-struct';
+import { throws } from 'assert';
 
 @Component({
   selector: 'brs-bugrs-submit-form',
@@ -82,6 +83,9 @@ export class BugrsSubmitFormComponent implements OnInit {
   submitComment() {
     this.bug.comments = this.bug.comments || [];
     console.log(this.bug.comments);
+    if (!this.CommentsForm.controls.reporter.value || !this.CommentsForm.controls.description.value ) {
+     return;
+    } else {
     this.CommentsForm.controls._id.setValue(this.bugID.slice(0, this.newMethod().bugID.length - 1) + (this.bug.comments.length + 1));
     this.bug.comments.push(this.CommentsForm.value);
 
@@ -91,6 +95,7 @@ export class BugrsSubmitFormComponent implements OnInit {
     }
     this.CommentsForm.controls.reporter.reset();
     this.CommentsForm.controls.description.reset();
+  }
     }
 
   private newMethod() {
