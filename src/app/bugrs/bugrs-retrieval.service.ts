@@ -47,11 +47,11 @@ export class BugrsRetrievalService {
     return this.http.get(`${this.endpointURL}/${id}`);
   }
 
-  updateBug(bug: ListStruct, id: string) {
-    bug.updatedAt =  Date.now.toString();
-    console.log(`${this.endpointURL}/${id}`);
-    return this.http.put(`${this.endpointURL}/${id}`, bug);
-
+  update(bug: any): Observable<any> {
+   bug.updatedAt =  Date.now.toString();
+   let result: Observable<any>;
+   result = this.http.put(`${this.endpointURL}/${bug.id}`, bug);
+   return result;
   }
 
   deleteBug(id: string, bug: ListStruct) {

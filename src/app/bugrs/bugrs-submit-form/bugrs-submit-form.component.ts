@@ -1,13 +1,12 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription, concat } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { BugrsRetrievalService } from '../bugrs-retrieval.service';
 import { tap, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { comment } from '../comment';
 import { ListStruct } from '../list-struct';
-import { throws } from 'assert';
 
 @Component({
   selector: 'brs-bugrs-submit-form',
@@ -45,7 +44,6 @@ export class BugrsSubmitFormComponent implements OnInit {
       reporter: new FormControl(),
       description: new FormControl(),
     });
-  //  this.comment= ['','',''];
     this.bugID = this.activatedRoute.snapshot.params.id;
     this.getBug(this.bugID);
     console.log('to pire= ' + this.bugID);
@@ -54,7 +52,6 @@ export class BugrsSubmitFormComponent implements OnInit {
       this.bugService.getBug(bugID).subscribe((bugdetails: ListStruct ) => {
         this.bug = bugdetails;
         this.submitForm.patchValue(bugdetails);
-       // this.CommentsForm.patchValue(bugdetails.comments);
       }
       );
   }
@@ -72,10 +69,19 @@ export class BugrsSubmitFormComponent implements OnInit {
         tap(() => this.router.navigate(['']))
             ).subscribe();
     } else {
-      this.bugService.updateBug(this.submitForm.value, this.bugID).pipe(
-        tap(() => this.router.navigate(['']))
-      ).subscribe();
+      this.informbug();
+      this.bugService.update(this.bug).subscribe(response => {
+      this.bug = response;
+     });
     }
+    this.router.navigate(['']);
+  }
+  informbug() {
+    this.bug.description = this.submitForm.controls.description.value;
+    this.bug.priority = this.submitForm.controls.priority.value;
+    this.bug.reporter = this.submitForm.controls.reporter.value;
+    this.bug.status = this.submitForm.controls.status.value;
+    this.bug.title = this.submitForm.controls.title.value;
   }
   pushButtonCancel() {
     this.router.navigate(['']);
@@ -86,22 +92,19 @@ export class BugrsSubmitFormComponent implements OnInit {
     if (!this.CommentsForm.controls.reporter.value || !this.CommentsForm.controls.description.value ) {
      return;
     } else {
-    this.CommentsForm.controls._id.setValue(this.bugID.slice(0, this.newMethod().bugID.length - 1) + (this.bug.comments.length + 1));
+    this.CommentsForm.controls._id.setValue(this.bugID.slice(0, this.bugID.length - 1) + (this.bug.comments.length + 1));
     this.bug.comments.push(this.CommentsForm.value);
 
     console.log(this.bug, this.bug.comments.length);
     if (this.bugID) {
-      this.bugService.updateBug(this.bug, this.bugID);
+    this.bugService.update(this.bug).subscribe(response => {
+      this.bug = response;
+    });
     }
     this.CommentsForm.controls.reporter.reset();
     this.CommentsForm.controls.description.reset();
   }
     }
-
-  private newMethod() {
-    return this;
-  }
-
     valueOfReporterChange() {
       if (this.submitForm.controls.reporter.value === 'QA') {
         console.log('mpike');
@@ -111,6 +114,5 @@ export class BugrsSubmitFormComponent implements OnInit {
       }
       this.submitForm.controls.status.updateValueAndValidity();
     }
-
   }
 
