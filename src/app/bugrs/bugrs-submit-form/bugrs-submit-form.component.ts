@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, concat } from 'rxjs';
 import { BugrsRetrievalService } from '../bugrs-retrieval.service';
 import { tap, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -40,6 +40,7 @@ export class BugrsSubmitFormComponent implements OnInit {
 
     });
     this.CommentsForm = new FormGroup({
+      _id: new FormControl(),
       reporter: new FormControl(),
       description: new FormControl(),
     });
@@ -52,6 +53,7 @@ export class BugrsSubmitFormComponent implements OnInit {
       this.bugService.getBug(bugID).subscribe((bugdetails: ListStruct ) => {
         this.bug = bugdetails;
         this.submitForm.patchValue(bugdetails);
+       // this.CommentsForm.patchValue(bugdetails.comments);
       }
       );
   }
@@ -79,8 +81,11 @@ export class BugrsSubmitFormComponent implements OnInit {
   }
   submitComment() {
     this.bug.comments = this.bug.comments || [];
+    console.log(this.bug.comments);
+    this.CommentsForm.controls['_id'].setValue(this.bugID.slice(0,this.bugID.length-1)+(this.bug.comments.length+1));
+    this.bug.comments.push(this.CommentsForm.value);
 
-    this.bug.comments.push( this.CommentsForm.value);
+    console.log(this.bug,this.bug.comments.length);
     if (this.bugID) {
       this.bugService.updateBug(this.bug,this.bugID);
     }

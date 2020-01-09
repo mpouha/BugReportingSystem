@@ -49,8 +49,9 @@ export class BugrsRetrievalService {
 
   updateBug(bug: ListStruct, id: string) {
     bug.updatedAt =  Date.now.toString();
-
+    console.log(`${this.endpointURL}/${id}`);
     return this.http.put(`${this.endpointURL}/${id}`, bug);
+
   }
 
   deleteBug(id: string, bug: ListStruct) {
