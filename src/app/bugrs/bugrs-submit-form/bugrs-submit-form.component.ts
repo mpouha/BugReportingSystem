@@ -82,23 +82,26 @@ export class BugrsSubmitFormComponent implements OnInit {
   submitComment() {
     this.bug.comments = this.bug.comments || [];
     console.log(this.bug.comments);
-    this.CommentsForm.controls['_id'].setValue(this.bugID.slice(0,this.bugID.length-1)+(this.bug.comments.length+1));
+    this.CommentsForm.controls._id.setValue(this.bugID.slice(0, this.newMethod().bugID.length - 1) + (this.bug.comments.length + 1));
     this.bug.comments.push(this.CommentsForm.value);
 
-    console.log(this.bug,this.bug.comments.length);
+    console.log(this.bug, this.bug.comments.length);
     if (this.bugID) {
-      this.bugService.updateBug(this.bug,this.bugID);
+      this.bugService.updateBug(this.bug, this.bugID);
     }
-    // this.bug.reporter = undefined;
-    //  this.bug.description = undefined;
+    this.CommentsForm.controls.reporter.reset();
+    this.CommentsForm.controls.description.reset();
     }
 
-    valueOfReporterChange(){
-      if (this.submitForm.controls.reporter.value === 'QA'){
+  private newMethod() {
+    return this;
+  }
+
+    valueOfReporterChange() {
+      if (this.submitForm.controls.reporter.value === 'QA') {
         console.log('mpike');
         this.submitForm.controls.status.setValidators(Validators.required);
-      }
-      else {
+      } else {
         this.submitForm.controls.status.clearValidators();
       }
       this.submitForm.controls.status.updateValueAndValidity();
