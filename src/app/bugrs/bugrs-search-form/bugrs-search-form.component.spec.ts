@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BugrsSearchFormComponent } from './bugrs-search-form.component';
 
 describe('BugrsSearchFormComponent', () => {
@@ -23,3 +22,14 @@ describe('BugrsSearchFormComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+
+
+
+
+
+
+
+
+
+
