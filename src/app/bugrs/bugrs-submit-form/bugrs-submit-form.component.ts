@@ -14,7 +14,7 @@ import { ListStruct } from '../list-struct';
   styleUrls: ['./bugrs-submit-form.component.scss']
 })
 export class BugrsSubmitFormComponent implements OnInit {
-  @Input() comments: comment[];
+ // @Input() comments: comment[];
   submitForm: FormGroup;
   CommentsForm: FormGroup;
   routeSubscription: Subscription;
@@ -40,13 +40,13 @@ export class BugrsSubmitFormComponent implements OnInit {
 
     });
     this.CommentsForm = new FormGroup({
-      _id: new FormControl(),
       reporter: new FormControl(),
       description: new FormControl(),
     });
     this.bugID = this.activatedRoute.snapshot.params.id;
     this.getBug(this.bugID);
     console.log('to pire= ' + this.bugID);
+
   }
      getBug(bugID: string) {
       this.bugService.getBug(bugID).subscribe((bugdetails: ListStruct ) => {
@@ -92,9 +92,7 @@ export class BugrsSubmitFormComponent implements OnInit {
     if (!this.CommentsForm.controls.reporter.value || !this.CommentsForm.controls.description.value ) {
      return;
     } else {
-    this.CommentsForm.controls._id.setValue(this.bugID.slice(0, this.bugID.length - 1) + (this.bug.comments.length + 1));
     this.bug.comments.push(this.CommentsForm.value);
-
     console.log(this.bug, this.bug.comments.length);
     if (this.bugID) {
     this.bugService.update(this.bug).subscribe(response => {
