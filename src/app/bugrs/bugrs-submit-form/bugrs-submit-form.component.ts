@@ -14,18 +14,19 @@ import { ListStruct } from '../list-struct';
   styleUrls: ['./bugrs-submit-form.component.scss']
 })
 export class BugrsSubmitFormComponent implements OnInit {
- // @Input() comments: comment[];
+  // @Input() comments: comment[];
   submitForm: FormGroup;
   CommentsForm: FormGroup;
   routeSubscription: Subscription;
   priorityList: Array<string> = ['Minor', 'Major', 'Critical'];
   reporterList: Array<string> = ['QA', 'PO', 'DEV'];
   statusList: Array<string> = ['Ready for test', 'Done', 'Rejected'];
-  bugID: string ;
+  bugID: string;
   temp: string;
   bug: ListStruct;
   comment: comment;
   isStatusRequired = false;
+  isButtonPressed: boolean = false;
 
   constructor(private bugService: BugrsRetrievalService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
@@ -48,34 +49,38 @@ export class BugrsSubmitFormComponent implements OnInit {
     console.log('to pire= ' + this.bugID);
 
   }
-     getBug(bugID: string) {
-      this.bugService.getBug(bugID).subscribe((bugdetails: ListStruct ) => {
-        this.bug = bugdetails;
-        this.submitForm.patchValue(bugdetails);
-      }
-      );
+
+  getBug(bugID: string) {
+    this.bugService.getBug(bugID).subscribe((bugdetails: ListStruct) => {
+      this.bug = bugdetails;
+      this.submitForm.patchValue(bugdetails);
+    }
+    );
   }
+
   ngOnDestroy(): void {
     // Called once, before the instance is destroyed.
     // TODOOOOO
     // Add 'implements OnDestroy' to the class.
   }
-  addEditBug()  {
+
+  addEditBug() {
     if (this.submitForm.invalid) {
       return;
     }
     if (this.bugID === '') {
       this.bugService.createBug(this.submitForm.value).pipe(
         tap(() => this.router.navigate(['']))
-            ).subscribe();
+      ).subscribe();
     } else {
       this.informbug();
       this.bugService.update(this.bug).subscribe(response => {
-      this.bug = response;
-     });
+        this.bug = response;
+      });
     }
     this.router.navigate(['']);
   }
+
   informbug() {
     this.bug.description = this.submitForm.controls.description.value;
     this.bug.priority = this.submitForm.controls.priority.value;
@@ -83,34 +88,46 @@ export class BugrsSubmitFormComponent implements OnInit {
     this.bug.status = this.submitForm.controls.status.value;
     this.bug.title = this.submitForm.controls.title.value;
   }
+
   pushButtonCancel() {
     this.router.navigate(['']);
   }
+
   submitComment() {
     this.bug.comments = this.bug.comments || [];
     console.log(this.bug.comments);
-    if (!this.CommentsForm.controls.reporter.value || !this.CommentsForm.controls.description.value ) {
-     return;
+    if (!this.CommentsForm.controls.reporter.value || !this.CommentsForm.controls.description.value) {
+      return;
     } else {
-    this.bug.comments.push(this.CommentsForm.value);
-    console.log(this.bug, this.bug.comments.length);
-    if (this.bugID) {
-    this.bugService.update(this.bug).subscribe(response => {
-      this.bug = response;
-    });
-    }
-    this.CommentsForm.controls.reporter.reset();
-    this.CommentsForm.controls.description.reset();
-  }
-    }
-    valueOfReporterChange() {
-      if (this.submitForm.controls.reporter.value === 'QA') {
-        console.log('mpike');
-        this.submitForm.controls.status.setValidators(Validators.required);
-      } else {
-        this.submitForm.controls.status.clearValidators();
+      this.bug.comments.push(this.CommentsForm.value);
+      console.log(this.bug, this.bug.comments.length);
+      if (this.bugID) {
+        this.bugService.update(this.bug).subscribe(response => {
+          this.bug = response;
+        });
       }
-      this.submitForm.controls.status.updateValueAndValidity();
+      this.CommentsForm.controls.reporter.reset();
+      this.CommentsForm.controls.description.reset();
     }
   }
+
+  valueOfReporterChange() {
+    if (this.submitForm.controls.reporter.value === 'QA') {
+      console.log('mpike');
+      this.submitForm.controls.status.setValidators(Validators.required);
+    } else {
+      this.submitForm.controls.status.clearValidators();
+    }
+    this.submitForm.controls.status.updateValueAndValidity();
+  }
+
+
+  openCommentScreen() {
+    this.isButtonPressed = true;
+  }
+
+  closeCommentScreen() {
+    this.isButtonPressed = false;
+  }
+}
 
